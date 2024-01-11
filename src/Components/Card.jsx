@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../Store/CartStore";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 
 const Card = ({ id, category, title, rating, price, image, desc }) => {
   const dispatch = useDispatch();
@@ -10,16 +9,7 @@ const Card = ({ id, category, title, rating, price, image, desc }) => {
   function handleClick(e) {
     console.log({ title, price, image, id, qty: 1 });
     dispatch(addToCart({ category, title, price, image, id, qty: 1 }));
-    toast.success("Item Added Successfully", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    toast.success("Item Added To Cart!");
   }
 
   return (
@@ -65,7 +55,7 @@ const Card = ({ id, category, title, rating, price, image, desc }) => {
             Add to cart
           </Link>
         </div>
-        <ToastContainer className="shadow-none" />
+        <Toaster />
       </div>
     </div>
   );

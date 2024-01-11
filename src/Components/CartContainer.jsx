@@ -4,7 +4,7 @@ import CartItemContainer from "./CartItemContainer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CarButton from "./CartButton";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 
 const CartContainer = () => {
   const CartItems = useSelector((state) => state.CartStore.value);
@@ -52,7 +52,13 @@ const CartContainer = () => {
           </div>
           <hr className="w-[90vw] lg:w-[18vw] my-2 " />
           <button
-            onClick={() => navigate("/success")}
+            onClick={() => {
+              if (CartItems.length > 0) {
+                navigate("/success");
+              } else {
+                toast.error("Cart is empty!");
+              }
+            }}
             className="bg-blue-600 mb-5 w-[85vw] lg:w-full m-auto rounded-md text-white p-2"
           >
             Checkout
@@ -65,6 +71,7 @@ const CartContainer = () => {
         }}
       >
         <CarButton />
+        <Toaster position="top-center" />
       </div>
     </>
   );
