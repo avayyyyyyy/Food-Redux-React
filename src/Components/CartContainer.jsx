@@ -37,14 +37,16 @@ const CartContainer = () => {
             <h3>
               Items:{" "}
               <span className="text-blue-600 font-medium">
-                {CartItems.length}
+                {CartItems.length > 0
+                  ? CartItems.reduce((acc, i) => i.qty + acc, 0)
+                  : 0}
               </span>
             </h3>
             <h3>
               Total Amount:
               <span className="text-blue-600 font-medium">
                 {" ₹"}
-                {CartItems.reduce((acc, e) => acc + e.price, 0)}
+                {CartItems.reduce((acc, e) => acc + e.price * e.qty, 0)}
               </span>
             </h3>
           </div>

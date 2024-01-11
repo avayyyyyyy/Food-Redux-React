@@ -8,8 +8,8 @@ const Card = ({ id, category, title, rating, price, image, desc }) => {
   const dispatch = useDispatch();
 
   function handleClick(e) {
-    console.log({ title, price, image, id });
-    dispatch(addToCart({ category, title, price, image, id }));
+    console.log({ title, price, image, id, qty: 1 });
+    dispatch(addToCart({ category, title, price, image, id, qty: 1 }));
     toast.success("Item Added Successfully", {
       position: "top-center",
       autoClose: 3000,

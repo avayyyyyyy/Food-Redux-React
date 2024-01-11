@@ -17,7 +17,12 @@ const Food = createSlice({
       }
     },
     filterThroughSearch(state, action) {
-      let filter = state.data.filter((e) => e.name.includes(action.payload));
+      const searchQuery = action.payload.toLowerCase(); // Convert to lowercase
+
+      let filter = state.data.filter((e) =>
+        e.name.toLowerCase().includes(searchQuery)
+      );
+
       state.filteredData = filter;
     },
   },
