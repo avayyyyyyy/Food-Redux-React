@@ -1,6 +1,9 @@
+import { useDispatch } from "react-redux";
+import FoodData, { filterData } from "../Store/FoodDataStore";
+
 const FliterButton = () => {
   const categories = ["All", "Breakfast", "Lunch", "Dinner", "Snacks"];
-
+  const dispatch = useDispatch(FoodData);
   return (
     <div className="w-screen px-10 py-5 flex flex-col gap-3  ">
       <h4 className="text-xl text-zinc-700">Find the best food</h4>
@@ -8,6 +11,9 @@ const FliterButton = () => {
         {categories.map((e, i) => (
           <button
             key={i}
+            onClick={() => {
+              dispatch(filterData(e));
+            }}
             className="rounded-md font-medium hover:bg-blue-600 bg-zinc-300 hover:text-white p-2  text-xl text-black"
           >
             {e}

@@ -4,13 +4,12 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Card = ({ id, title, rating, price, image, desc }) => {
-  const cartItems = useSelector((state) => state.CartStore.value);
+const Card = ({ id, category, title, rating, price, image, desc }) => {
   const dispatch = useDispatch();
 
   function handleClick(e) {
     console.log({ title, price, image, id });
-    dispatch(addToCart({ title, price, image, id }));
+    dispatch(addToCart({ category, title, price, image, id }));
     toast.success("Item Added Successfully", {
       position: "top-center",
       autoClose: 3000,
@@ -35,10 +34,10 @@ const Card = ({ id, title, rating, price, image, desc }) => {
       <div className="pb-3">
         <div className="flex my-3 justify-between items-center px-5">
           <a href="#">
-            <h5 className="text-sm my-1 font-medium tracking-tight text-gray-900">
-              {title}
+            <h5 className="text-base my-1 font-medium tracking-tight text-gray-900">
+              {title.slice(0, 16)}...
             </h5>
-            <h6 className="text-sm">{desc.slice(0, 40)}...</h6>
+            <h6 className="text-xs">{desc.slice(0, 40)}...</h6>
           </a>
           <div className="flex items-center mb-5">
             <svg
